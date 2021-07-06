@@ -42,6 +42,15 @@ services:
     networks:
       - wpsite
 
+  next:
+    build: ./frontend
+    depends_on:
+      - wordpress
+    ports:
+      - "80:3000"
+    networks:
+      - wpsite
+
 networks:
   wpsite:
 
