@@ -1,7 +1,10 @@
 const API_URL = process.env.WORDPRESS_API_URL;
 
 async function fetchAPI(query, { variables } = {}) {
-  const headers = { "Content-Type": "application/json" };
+  const headers = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
 
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
     headers[
@@ -18,8 +21,8 @@ async function fetchAPI(query, { variables } = {}) {
     }),
   });
 
-  console.log(res);
   const json = await res.json();
+
   if (json.errors) {
     console.error(json.errors);
     throw new Error("Failed to fetch API");

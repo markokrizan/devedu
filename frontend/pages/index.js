@@ -36,7 +36,8 @@ export default function Index({ allPosts: { edges }, preview }) {
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+// Use getStaticProps for static generation
+export async function getServerSideProps({ preview = false }) {
   const allPosts = await getAllPostsForHome(preview);
   return {
     props: { allPosts, preview },
