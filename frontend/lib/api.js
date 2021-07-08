@@ -213,3 +213,16 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
 
   return data;
 }
+
+export async function getSiteData() {
+  const data = await fetchAPI(`
+    {
+      allSettings {
+        generalSettingsTitle
+        generalSettingsDescription
+      }
+    }
+  `);
+
+  return data?.allSettings;
+}

@@ -4,10 +4,15 @@ import MoreStories from "../components/more-stories";
 import HeroPost from "../components/hero-post";
 import Intro from "../components/intro";
 import Layout from "../components/layout";
-import { getAllPostsForHome } from "../lib/api";
+import { getAllPostsForHome, getSiteData } from "../lib/api";
 import { CMS_NAME } from "../lib/constants";
 
-export default function Index({ allPosts: { edges }, preview }) {
+export default function Index({
+  allPosts: { edges },
+  preview,
+  generalSettingsTitle,
+  generalSettingsDescription,
+}) {
   const heroPost = edges[0]?.node;
   const morePosts = edges.slice(1);
 
@@ -18,7 +23,10 @@ export default function Index({ allPosts: { edges }, preview }) {
           <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
         <Container>
-          <Intro />
+          <Intro
+            generalSettingsTitle={generalSettingsTitle}
+            generalSettingsDescription={generalSettingsDescription}
+          />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
@@ -39,7 +47,9 @@ export default function Index({ allPosts: { edges }, preview }) {
 // Use getStaticProps for static generation
 export async function getServerSideProps({ preview = false }) {
   const allPosts = await getAllPostsForHome(preview);
+  const siteData = await getSiteData();
+
   return {
-    props: { allPosts, preview },
+    props: { allPosts, preview, ...siteData },
   };
 }
