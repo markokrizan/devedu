@@ -38,3 +38,4 @@ jobs:
             cd devedu
             docker-compose pull next
             docker-compose up -d --no-deps next
+            docker image prune -f
