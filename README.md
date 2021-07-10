@@ -1,23 +1,11 @@
 # WP + Next.js blog
 
-Manually run the stack on a server:
-
-- install `Docker` and `docker-compose` on a server
-- clone
-- run `cd frontend && cp .env.production.example .env.production`
-- edit domain name
-- run `docker-compose up`
-- open `domain:8000`
-- go through wp wizard
-- go to settings/permalinks, set post name and save changes
-
-Site is running on `domain:80`
-
 Dev:
 
 - clone
+- run `cp .env.example .env`
 - run `cd frontend && cp .env.development.example .env.development`
-- run `docker-compose up -d db phpmyadmin wordpress`
+- run `docker-compose up -d`
 - run `cd frontend`
 - run `yarn`
 - run `yarn dev`
@@ -25,3 +13,21 @@ Dev:
 - go through wp wizard
 - go to settings/permalinks, set post name and save changes
 - open `localhost:3000`
+
+Setup app on server:
+
+- install `Docker` and `docker-compose` on a server
+- create `devedu` folder on server
+- run `cd devedu`
+- create `.env` with values from `.env.example`
+- create `docker-compose.yml` from `docker-compose.prod.yml`
+- run `docker-compose up -d`
+- open `domain:8000`
+- go through wp wizard
+- go to settings/permalinks, set post name and save changes
+
+Site is running on `domain:80`
+
+CI:
+
+- github actions are setup on the `master` branch - push or crate pull request to reflect changes

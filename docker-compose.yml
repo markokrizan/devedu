@@ -45,14 +45,6 @@ services:
     networks:
       - wpsite
 
-  next:
-    # Host network mode is used to fix the issue of wordpress url name resolving
-    # If next container is within the bridge network, wordpress container name will need to be refereneced in the url name
-    network_mode: "host"
-    build: ./frontend
-    depends_on:
-      - wordpress
-
 networks:
   wpsite:
 
