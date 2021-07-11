@@ -74,3 +74,4 @@ networks:
 
 volumes:
   db_data:
+  nginx_secrets:
