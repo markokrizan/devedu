@@ -24,6 +24,6 @@ COPY --from=builder /app/.env.production ./
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-ENV PORT=80
+EXPOSE 3000
 
 CMD ["yarn", "start"]

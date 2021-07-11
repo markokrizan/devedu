@@ -44,6 +44,25 @@ services:
     networks:
       - wpsite
 
+  nginx:
+    image: jonasal/nginx-certbot:latest
+    restart: unless-stopped
+    environment:
+      CERTBOT_EMAIL: ${CERTBOT_EMAIL}
+      STAGING: ${STAGING}
+      DHPARAM_SIZE: ${DHPARAM_SIZE}
+      RSA_KEY_SIZE: ${RSA_KEY_SIZE}
+      ELLIPTIC_CURVE: ${ELLIPTIC_CURVE}
+      USE_ECDSA: ${USE_ECDSA}
+      RENEWAL_INTERVAL: ${RENEWAL_INTERVAL}
+      DEBUG: ${DEBUG}
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - nginx_secrets:/etc/letsencrypt
+      - ./devedu_conf.d:/etc/nginx/devedu_conf.d
+
   next:
     network_mode: "host"
     image: "markokrizan/devedu:next"

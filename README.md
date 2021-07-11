@@ -19,8 +19,9 @@ Setup app on server:
 - install `Docker` and `docker-compose` on a server
 - create `devedu` folder on server
 - run `cd devedu`
-- create `.env` with values from `.env.example`
+- create `.env` with values from `.env.prod.example`
 - create `docker-compose.yml` from `docker-compose.prod.yml`
+- create `devedu_conf.d` from `example.conf`
 - run `docker-compose up -d`
 - open `domain:8000`
 - go through wp wizard
