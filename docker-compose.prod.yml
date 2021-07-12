@@ -45,6 +45,7 @@ services:
       - wpsite
 
   nginx:
+    network_mode: "host"
     image: jonasal/nginx-certbot:latest
     restart: unless-stopped
     environment:
@@ -56,12 +57,9 @@ services:
       USE_ECDSA: ${USE_ECDSA}
       RENEWAL_INTERVAL: ${RENEWAL_INTERVAL}
       DEBUG: ${DEBUG}
-    ports:
-      - 80:80
-      - 443:443
     volumes:
       - nginx_secrets:/etc/letsencrypt
-      - ./devedu_conf.d:/etc/nginx/devedu_conf.d
+      - ./user_conf.d:/etc/nginx/user_conf.d
 
   next:
     network_mode: "host"
