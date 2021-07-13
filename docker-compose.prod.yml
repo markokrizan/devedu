@@ -12,8 +12,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
-    networks:
-      - wpsite
 
   phpmyadmin:
     container_name: phpmyadmin
@@ -26,8 +24,6 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    networks:
-      - wpsite
 
   wordpress:
     container_name: wordpress
@@ -41,12 +37,10 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: ${MYSQL_ROOT_USER}
       WORDPRESS_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    networks:
-      - wpsite
 
   nginx:
-    network_mode: "host"
     image: jonasal/nginx-certbot:latest
+    container_name: nginx
     restart: unless-stopped
     environment:
       CERTBOT_EMAIL: ${CERTBOT_EMAIL}
@@ -57,18 +51,20 @@ services:
       USE_ECDSA: ${USE_ECDSA}
       RENEWAL_INTERVAL: ${RENEWAL_INTERVAL}
       DEBUG: ${DEBUG}
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
       - nginx_secrets:/etc/letsencrypt
       - ./user_conf.d:/etc/nginx/user_conf.d
 
   next:
-    network_mode: "host"
     image: "markokrizan/devedu:next"
+    container_name: next
+    ports:
+      - "3000:3000"
     depends_on:
       - wordpress
-
-networks:
-  wpsite:
 
 volumes:
   db_data:
