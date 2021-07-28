@@ -6,13 +6,10 @@ Dev:
 - run `cp .env.example .env`
 - run `cd frontend && cp .env.development.example .env.development`
 - run `docker-compose up -d`
-- run `cd frontend`
-- run `yarn`
-- run `yarn dev`
-- open `localhost:8000`
+- add this entry to `/etc/hosts` - `127.0.0.1 devedu-test.rs`
+- open `devedu-test.rs/wordpress`
 - go through wp wizard
 - go to settings/permalinks, set post name and save changes
-- open `localhost:3000`
 
 Setup app on server:
 
@@ -23,12 +20,16 @@ Setup app on server:
 - create `docker-compose.yml` from `docker-compose.prod.yml`
 - run `mkdir user_conf.d`
 - run `cd user_conf.d`
-- create `devedu.conf` from `example.conf`
+- create `devedu.conf` from `prod.conf`
 - run `cd ..`
 - run `docker-compose up -d`
 - open `domain:8000`
 - go through wp wizard
 - go to settings/permalinks, set post name and save changes
+
+wp-admin issue (temporary fix):
+
+- put `$_SERVER['REQUEST_URI'] = str_replace("/wp-admin/", "/wordpress/wp-admin/", $_SERVER['REQUEST_URI']);` at the start of `wp-config.php` in the wordpress container
 
 Site is running on `domain:80`
 
