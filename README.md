@@ -6,7 +6,13 @@ Dev:
 - run `cp .env.example .env`
 - run `cd frontend && cp .env.development.example .env.development`
 - run `docker-compose up -d`
-- add this entry to `/etc/hosts` - `127.0.0.1 devedu-test.rs`
+- add the following entries to `/etc/hosts`:
+  ```
+  127.0.0.1 devedu-test.rs
+  127.0.0.1 www.devedu-test.rs
+  127.0.0.1 db-admin.devedu-test.rs
+  127.0.0.1 api.devedu-test.rs
+  ```
 - open `devedu-test.rs/wordpress`
 - go through wp wizard
 - go to settings/permalinks, set post name and save changes
@@ -26,10 +32,6 @@ Setup app on server:
 - open `domain:8000`
 - go through wp wizard
 - go to settings/permalinks, set post name and save changes
-
-wp-admin issue (temporary fix):
-
-- put `$_SERVER['REQUEST_URI'] = str_replace("/wp-admin/", "/wordpress/wp-admin/", $_SERVER['REQUEST_URI']);` at the start of `wp-config.php` in the wordpress container
 
 Site is running on `domain:80`
 

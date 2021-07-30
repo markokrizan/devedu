@@ -61,6 +61,8 @@ services:
 
   next:
     image: "markokrizan/devedu:next"
+    links:
+      - wordpress:api.devedu.rs
     container_name: next
     depends_on:
       - wordpress
