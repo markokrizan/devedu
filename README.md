@@ -19,6 +19,8 @@ Dev:
 
 Setup app on server:
 
+(Setup domain name and dns config with subdomain entries according to the `/etc/hosts` file entries mentioned above)
+
 - install `Docker` and `docker-compose` on a server
 - create `devedu` folder on server
 - run `cd devedu`
