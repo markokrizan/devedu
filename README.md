@@ -13,7 +13,7 @@ Dev:
   127.0.0.1 db-admin.devedu-test.rs
   127.0.0.1 api.devedu-test.rs
   ```
-- open `devedu-test.rs/wordpress`
+- open `api.devedu-test.rs`
 - go through wp wizard
 - go to settings/permalinks, set post name and save changes
 
@@ -31,11 +31,9 @@ Setup app on server:
 - create `devedu.conf` from `prod.conf`
 - run `cd ..`
 - run `docker-compose up -d`
-- open `domain:8000`
+- open `api.${domain}`
 - go through wp wizard
 - go to settings/permalinks, set post name and save changes
-
-Site is running on `domain:80`
 
 CI:
 
