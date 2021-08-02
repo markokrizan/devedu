@@ -88,6 +88,7 @@ export async function getAllPostsForHome(preview) {
                 }
               }
             }
+            isSticky
           }
         }
       }

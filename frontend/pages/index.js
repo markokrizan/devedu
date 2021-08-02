@@ -7,8 +7,13 @@ import Layout from "../components/layout";
 import { getAllPostsForHome } from "../lib/api";
 
 export default function Index({ allPosts: { edges }, preview, siteData }) {
-  const heroPost = edges[0]?.node;
-  const morePosts = edges.slice(1);
+  const stickyPostIndex = edges.findIndex((edge) => !!edge.node.isSticky);
+  const heroPostIndex = stickyPostIndex >= 0 ? stickyPostIndex : 0;
+
+  const heroPost = edges[heroPostIndex].node;
+
+  const morePosts = [...edges];
+  morePosts.splice(heroPostIndex, 1);
 
   return (
     <>
