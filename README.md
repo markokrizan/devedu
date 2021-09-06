@@ -1,6 +1,6 @@
 # WP + Next.js blog
 
-Dev:
+Dev (with local WP instance):
 
 - clone
 - run `cp .env.example .env`
@@ -16,6 +16,13 @@ Dev:
 - open `api.devedu-test.rs`
 - go through wp wizard
 - go to settings/permalinks, set post name and save changes
+
+Dev (with staging WP)
+
+- put `WORDPRESS_API_URL=https://api.devedu.rs/graphql` in `.env.development`
+- run `cd frontend`
+- run `yarn` to install dependencies
+- run `yarn dev` to start the development server
 
 Setup app on server:
 
